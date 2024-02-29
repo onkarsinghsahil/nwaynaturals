@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://index.docker.io/v1/
-        username: ${{ secrets.AzureAppService_ContainerUsername_3d306c38650b441eb12fb88b02a3caf6 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_252b7b628f024145b422b9be69d4f4bf }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_c96f577f466044c8b155883552a73ca5 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_275ea0dca67a41dabeb8da64c9cf6831 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_3d306c38650b441eb12fb88b02a3caf6 }}/mcr.microsoft.com/appsvc/staticsite:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_c96f577f466044c8b155883552a73ca5 }}/nginx:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'nwaynaturals'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_6fbb54aff5f94a55aea7e6af7446ffaa }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_3d306c38650b441eb12fb88b02a3caf6 }}/mcr.microsoft.com/appsvc/staticsite:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_1d7f11cc4d414fa0a7457bbed39b8ea1 }}
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_c96f577f466044c8b155883552a73ca5 }}/nginx:${{ github.sha }}'
